@@ -35,25 +35,14 @@ router.post("/api/burger", function (req, res) {
     })
 })
 
-// router.put("/api/:id", function (req, res){
-//     console.log("working in node");           
-//     burger.update({
-//                 devoured: true 
-//                 },
-//          {
-//             id: req.params.id
-
-//          },function(result){
-//        res.redirect("/") 
-//     });
-// });
-
-
-
-
-
-
-
-
+router.get("/api/delete/:id", function (req, res) {
+    console.log("working in node");
+    burger.delete({
+        id: req.params.id
+    }, function (data) {
+        // console.log(data);
+        res.redirect("/")
+    })
+});
 
 module.exports = router;

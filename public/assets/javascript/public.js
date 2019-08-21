@@ -1,14 +1,32 @@
 console.log("hello");
 
-
 $("#form").on("submit", function (event) {
     event.preventDefault();
 
-    var burger_name = $("#burgerName").val();
-    var burgerInfo = { burger_name: burger_name }
-    $.ajax({ url: "/api/burger", method: "POST", data: burgerInfo })
+    let burgerInfo = {
+        burger_name: [$("#burgerName").val()]
+    }
+    $.ajax({
+        url: "/api/burger",
+        method: "POST",
+        data: burgerInfo
+    }).then(function () {
+        console.log("worked");
+        location.reload();
+    })
+});
 
-}).then(function () {
-    console.log("worked");
+$("#delete").on("click", function (event) {
+    let burgerInfo = {
+        id: [$("#delete").attr("data-type")]
+    }
 
-})
+    $.ajax({
+        url: "/api/burger",
+        method: "DELETE",
+        data: burgerInfo
+    }).then(function () {
+        console.log("worked");
+        location.reload();
+    })
+});
